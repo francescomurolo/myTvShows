@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="show" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Show" inverseName="category" inverseEntity="Show"/>
+    </entity>
+    <entity name="Episode" representedClassName="Episode" syncable="YES" codeGenerationType="class">
+        <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="watched" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="season" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Season" inverseName="episode" inverseEntity="Season"/>
+    </entity>
+    <entity name="Platform" representedClassName="Platform" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="show" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Show" inverseName="platform" inverseEntity="Show"/>
+    </entity>
+    <entity name="Season" representedClassName="Season" syncable="YES" codeGenerationType="class">
+        <relationship name="episode" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Episode" inverseName="season" inverseEntity="Episode"/>
+        <relationship name="show" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="season" inverseEntity="Show"/>
+    </entity>
+    <entity name="Show" representedClassName="Show" syncable="YES" codeGenerationType="class">
+        <attribute name="link" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="showDescription" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="show" inverseEntity="Category"/>
+        <relationship name="platform" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Platform" inverseName="show" inverseEntity="Platform"/>
+        <relationship name="season" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Season" inverseName="show" inverseEntity="Season"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="185" positionY="-150" width="128" height="73"/>
+        <element name="Episode" positionX="-485" positionY="114" width="128" height="88"/>
+        <element name="Platform" positionX="186" positionY="158" width="128" height="73"/>
+        <element name="Season" positionX="-258" positionY="-63" width="128" height="73"/>
+        <element name="Show" positionX="-83" positionY="-204" width="128" height="163"/>
+    </elements>
+</model>
